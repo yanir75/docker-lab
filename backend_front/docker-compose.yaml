@@ -3,6 +3,7 @@ version: '3.7'
 
 services:
 
+# C backend
   backend:
     build: 
       context: ./backend_c
@@ -10,9 +11,22 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1'
+          cpus: '0.5'
           memory: '30M'
 
+# Python backend
+
+  # backend:
+  #   build: 
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '1'
+  #         memory: '30M'
+
+# Python frontend
   front:
     build: 
       context: ./front
