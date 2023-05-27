@@ -1,0 +1,31 @@
+# Use root/example as user/password credentials
+version: '3.7'
+
+services:
+
+  backend:
+    build: 
+      context: ./backend_c
+      dockerfile: Dockerfile
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '30M'
+
+  front:
+    build: 
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - 10000:10000
+    links:
+      - "backend:back"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 300M
+        # reservations:
+        #   cpus: '0.0001'
+        #   memory: 20M

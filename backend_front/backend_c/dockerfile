@@ -1,0 +1,7 @@
+FROM --platform=arm64 gcc
+COPY main.c .
+RUN gcc -static -o  main main.c
+
+FROM --platform=arm64 scratch
+COPY --from=0 main .
+CMD ["./main"]
